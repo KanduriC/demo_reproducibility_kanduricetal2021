@@ -1,0 +1,6 @@
+hp_setting,split,optimal,recall,auc,balanced_accuracy
+feature_size_4_lasso_rate,1,False,1.0,0.4903846153846154,0.5
+feature_size_4_lasso_rate,2,False,0.6666666666666666,0.38636363636363635,0.3787878787878788
+feature_size_4_lasso_rate,3,False,1.0,0.4457070707070707,0.5
+feature_size_4_lasso_rate,4,False,0.0,0.3560606060606061,0.4444444444444444
+feature_size_4_lasso_rate,5,False,0.0,0.5059523809523809,0.5

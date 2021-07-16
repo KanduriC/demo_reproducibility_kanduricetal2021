@@ -1,0 +1,10 @@
+id	TRB_regex
+1	Y.EV
+2	WK.Y
+3	E.FY
+4	V.RYW
+5	YD.WV
+6	YFR.W
+7	Y.E
+8	W.D
+9	E.F

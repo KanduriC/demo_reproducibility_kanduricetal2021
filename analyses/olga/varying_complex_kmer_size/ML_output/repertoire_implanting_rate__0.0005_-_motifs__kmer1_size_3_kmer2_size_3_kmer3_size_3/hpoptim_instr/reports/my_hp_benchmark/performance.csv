@@ -1,0 +1,6 @@
+fold,label,encoding,ml_method,performance
+0,signal_cancer,feature_size_4,logistic_regression,0.4
+1,signal_cancer,feature_size_4,logistic_regression,0.475
+2,signal_cancer,feature_size_4,logistic_regression,0.35
+3,signal_cancer,feature_size_4,logistic_regression,0.45
+4,signal_cancer,feature_size_4,logistic_regression,0.475

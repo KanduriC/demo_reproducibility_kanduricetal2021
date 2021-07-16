@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Training ML model - CV details</title>
+    <style>
+        /**
+*** SIMPLE GRID
+*** (C) ZACH COLE 2016
+**/
+
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic);
+
+/* UNIVERSAL */
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  top: 0;
+  font-size: 100%;
+  font-family: 'Lato', Helvetica, sans-serif;
+  color: #333447;
+  line-height: 1.2;
+}
+
+/* TYPOGRAPHY */
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.375rem;
+}
+
+h4 {
+  font-size: 1.125rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: 0.875rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+p {
+  font-size: 1.125rem;
+  font-weight: 200;
+  line-height: 1.8;
+}
+
+a {
+    color: #25537b;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-regular {
+  font-weight: 400;
+}
+
+.font-heavy {
+  font-weight: 700;
+}
+
+/* POSITIONING */
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.justify {
+  text-align: justify;
+}
+
+.container {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row {
+  position: relative;
+  width: 100%;
+}
+
+.row [class^="col"] {
+  float: left;
+  margin: 0.5rem 2%;
+  min-height: 0.125rem;
+}
+
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col-12 {
+  width: 96%;
+}
+
+.col-1-sm {
+  width: 4.33%;
+}
+
+.col-2-sm {
+  width: 12.66%;
+}
+
+.col-3-sm {
+  width: 21%;
+}
+
+.col-4-sm {
+  width: 29.33%;
+}
+
+.col-5-sm {
+  width: 37.66%;
+}
+
+.col-6-sm {
+  width: 46%;
+}
+
+.col-7-sm {
+  width: 54.33%;
+}
+
+.col-8-sm {
+  width: 62.66%;
+}
+
+.col-9-sm {
+  width: 71%;
+}
+
+.col-10-sm {
+  width: 79.33%;
+}
+
+.col-11-sm {
+  width: 87.66%;
+}
+
+.col-12-sm {
+  width: 96%;
+}
+
+.row::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.hidden-sm {
+  display: none;
+}
+
+@media only screen and (min-width: 33.75em) {  /* 540px */
+  .container {
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width: 45em) {  /* 720px */
+  .col-1 {
+    width: 4.33%;
+  }
+
+  .col-2 {
+    width: 12.66%;
+  }
+
+  .col-3 {
+    width: 21%;
+  }
+
+  .col-4 {
+    width: 29.33%;
+  }
+
+  .col-5 {
+    width: 37.66%;
+  }
+
+  .col-6 {
+    width: 46%;
+  }
+
+  .col-7 {
+    width: 54.33%;
+  }
+
+  .col-8 {
+    width: 62.66%;
+  }
+
+  .col-9 {
+    width: 71%;
+  }
+
+  .col-10 {
+    width: 79.33%;
+  }
+
+  .col-11 {
+    width: 87.66%;
+  }
+
+  .col-12 {
+    width: 96%;
+  }
+
+  .hidden-sm {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 60em) { /* 960px */
+  .container {
+    width: 75%;
+    max-width: 60rem;
+  }
+}
+
+/* immuneML custom */
+
+table, td, th {
+    border: 1px solid #cccccc;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 0.4em;
+    text-align: center;
+}
+
+img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+details {
+    margin: 0.7em 0;
+}
+
+details > summary {
+    cursor: pointer;
+}
+
+details > summary > h3 {
+    display: inline-block;
+}
+
+details > summary:focus{
+    outline: none;
+}
+
+details > table {
+    margin: 1.5em;
+}
+
+embed {
+    width: 100%;
+    height: 500px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+ul > li {
+    text-align: left;
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+.padded {
+    padding: 1em 2em;
+}
+
+.padded-bottom{
+    padding-bottom: 1em;
+}
+
+.padded-md {
+    padding: 0.75em 2em;
+}
+
+.padded-sm {
+    padding: 0.5em 2em;
+}
+
+.padded-xs {
+    padding: 0.25em 2em;
+}
+
+.padded-top {
+    padding-top: 1em;
+}
+
+.table-container{
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table-container table thead {
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+  .col {
+    display: block;
+    width: 100%;
+  }
+}
+
+@media print {
+    .card {
+        box-shadow: none;
+    }
+}
+
+code {
+    max-width: 100%;
+    white-space: pre-wrap;
+}
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="container">
+        <h3>Assessment - split 1 details</h3>
+        <div class="padded-top padded-bottom">
+            <details>
+                <summary>Train and validation metadata (<a href="../hpoptim_instr/split_1/datasets/train_metadata.csv">download link</a>)</summary>
+                <div class="table-container padded">
+                    <table>
+<thead>
+<tr>
+<td>filename</td>
+<td>subject_id</td>
+<td>signal_cancer</td>
+</tr>
+</thead>
+<tr>
+<td>repertoires/5000a70471414e018522d129b1e92a68_data.npy</td>
+<td>subject1</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/fe54091b01b941ffa5c24815f6ecd24c_data.npy</td>
+<td>subject3</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/8ab8120e5dc6400abfed56522b0e11a7_data.npy</td>
+<td>subject4</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/746ad861d3f94283903653ea59025434_data.npy</td>
+<td>subject6</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/e4f5b33fd565478fbc88ac24d241f014_data.npy</td>
+<td>subject7</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/6ea0e8f75b584eeab95402156a5d3063_data.npy</td>
+<td>subject8</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/ebd257408c1e42c28abd89426273fbce_data.npy</td>
+<td>subject9</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/5beb6bf4347b46bcbf2f3f2a5b164b52_data.npy</td>
+<td>subject10</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/12e6ee8c4924434586e9f3a4973353c4_data.npy</td>
+<td>subject11</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/8c5c7621a4064cb088a54be92a7a2c23_data.npy</td>
+<td>subject13</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/fbfb084d310247f1864b63ea7f3d232b_data.npy</td>
+<td>subject14</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/31bebadd5ca84622af33980829beb506_data.npy</td>
+<td>subject16</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/97c6449f759f4ef5a984c64ce0c3097a_data.npy</td>
+<td>subject17</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/0df33f9b825c4305a6bd73dcf6d5529e_data.npy</td>
+<td>subject18</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/e4a092deecf94a33946d92382f12d662_data.npy</td>
+<td>subject20</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/15f3b441af714a24b240ed78e2da010d_data.npy</td>
+<td>subject21</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/dc6ab0650b5249698a7ed224d5698aeb_data.npy</td>
+<td>subject22</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/cb06a67cda2148d4be417a9d00c02a0b_data.npy</td>
+<td>subject23</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/692bf1ff10d3459e93b53ec392899f22_data.npy</td>
+<td>subject24</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/09f6d5f622de442abe1a63c7cb8823f7_data.npy</td>
+<td>subject25</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/0cf3baf805b94ee78c59a66e30a4f1ae_data.npy</td>
+<td>subject27</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/3971a9211cd944ab83b2a68fd6a14c30_data.npy</td>
+<td>subject28</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/cddc8c4d06014e4faeaeba4714e01a8d_data.npy</td>
+<td>subject29</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/2670e1aeeda148628e3c39d665aafc50_data.npy</td>
+<td>subject30</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/03a42b9198a04feebbea5ccb0b9829b3_data.npy</td>
+<td>subject32</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/ba8925ab1a77485eb0cb109cf086be20_data.npy</td>
+<td>subject33</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/4751c3245f8b45b985d5808fcc1b8049_data.npy</td>
+<td>subject34</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/9b52afef267e4082a3ec8e879019b3f0_data.npy</td>
+<td>subject35</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/799f7bab07514bc5bd41218eab5f2624_data.npy</td>
+<td>subject36</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/b5f9e59c0fcc4933b985bbe559da61a9_data.npy</td>
+<td>subject37</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/63c557b0ae664eb4ba51177e562902e5_data.npy</td>
+<td>subject38</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/0aefb149efeb43ab9c774eece8e40575_data.npy</td>
+<td>subject39</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/b9d748273d7d49c2ba79a4c8e9c87bcc_data.npy</td>
+<td>subject40</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/8f9c72b149a844abaf00021a6ffc70ed_data.npy</td>
+<td>subject42</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/d8c0d23ccde7468da9fcebe165401c0d_data.npy</td>
+<td>subject43</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/43264e2a33e84177834c5270f9b4bfaa_data.npy</td>
+<td>subject45</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/fd69cb4ecda64bc8933403820509a556_data.npy</td>
+<td>subject47</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/7dd354d10f004aa294c8188079fd3789_data.npy</td>
+<td>subject49</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/e4497a7f310c4cbc8a6c94f530608442_data.npy</td>
+<td>subject50</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/1bec2abc7607461a853f6d593854276d_data.npy</td>
+<td>subject51</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/00ef5186ba874febb5956a2a902fc00d_data.npy</td>
+<td>subject52</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/2fc7f92e322443e696ac49adff54c6a0_data.npy</td>
+<td>subject53</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/5611ede1661042afb8a8cc7bd137d5aa_data.npy</td>
+<td>subject54</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/f0491fd4544f47ad86ed95e0a51bb363_data.npy</td>
+<td>subject55</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/f90b953c8d2a43b9bb4f238c08144018_data.npy</td>
+<td>subject56</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/541476bfe00e4bdc97a3b3e1ed7eb2da_data.npy</td>
+<td>subject57</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/65873567a8774beb96f77fd6352bdef7_data.npy</td>
+<td>subject58</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/8d4dbcd2f8eb4f2baa727b03a876151e_data.npy</td>
+<td>subject59</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/a980a4ace3a54d5b85b5b8eadc7da797_data.npy</td>
+<td>subject60</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/c2583f3a568b4b228b761732f51cea7b_data.npy</td>
+<td>subject61</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/eaaef043f550450f921819850dc787ed_data.npy</td>
+<td>subject62</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/f42e2b2786c34e1c85b7455ed0c8a0bc_data.npy</td>
+<td>subject63</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/0236746c9b45439db642734798a225c7_data.npy</td>
+<td>subject64</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/76c1d0e912a548c9ac537fd1948b1767_data.npy</td>
+<td>subject65</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/c4ecae96e00e48c29b0e94de0eaa5464_data.npy</td>
+<td>subject66</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/07e9a08167fa4742b1786ce896485526_data.npy</td>
+<td>subject67</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/946484e0a22b412a8ec21d2c65c829e4_data.npy</td>
+<td>subject68</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/7833c57fd76a46d9a282e374274112a7_data.npy</td>
+<td>subject69</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/7e1e92b6ced54fe9bf95eeb55d250b07_data.npy</td>
+<td>subject70</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/10549835e05b42f2bb71d9ae4e7196d1_data.npy</td>
+<td>subject71</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/5888c6a5654a4e1b978f645e4fd96652_data.npy</td>
+<td>subject72</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/1511a2ce4ab04155a67ef1f590b3f411_data.npy</td>
+<td>subject74</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/522223c46fd34c0fbfea4c22d555cdcb_data.npy</td>
+<td>subject75</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/e6e613ac40cf4cb0a3cc4f60f7d27b95_data.npy</td>
+<td>subject77</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/ff88201ac97541cca99852f1fdba35d7_data.npy</td>
+<td>subject78</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/0bda129fd8d7445796f431957e99ddc6_data.npy</td>
+<td>subject80</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/b8e5b1ac2f674facba25f7e82aba10b7_data.npy</td>
+<td>subject81</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/b994aaabf6f94321b0dd1fe8fcbc3aa6_data.npy</td>
+<td>subject82</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/813ec36c64414677b5781db46f5b09cd_data.npy</td>
+<td>subject84</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/36552015baef496a9c4232a4b3f6b8c1_data.npy</td>
+<td>subject85</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/d0920a33c525414c9d24f65714e8713d_data.npy</td>
+<td>subject86</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/ee0dfe46b4f343ea8516a208e02b51d1_data.npy</td>
+<td>subject87</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/f10d64893661472fba61463a7e645993_data.npy</td>
+<td>subject88</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/d52d0c898d1b417f9d1c37a73f84a0bb_data.npy</td>
+<td>subject89</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/0efbf5089c59468abc4ad9cf4414463a_data.npy</td>
+<td>subject91</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/0ed2864f400c48279f4ccce231fd91e7_data.npy</td>
+<td>subject92</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/4c828cc34ed6464aa7b95e0944cc3142_data.npy</td>
+<td>subject93</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/f70e7e730a3b4f2fa04c3f3dea2ee8a3_data.npy</td>
+<td>subject94</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/f4cdb33ae1e84466af4774099578cb9c_data.npy</td>
+<td>subject96</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/82da48bba10444e0aeb63591f805f28a_data.npy</td>
+<td>subject97</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/f8b4fe1e8345484286eb77be464b866b_data.npy</td>
+<td>subject98</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/2a0e7c2da4c9418aad1b42a44020919c_data.npy</td>
+<td>subject99</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/6b97388249cb4e499816c454f466c4ce_data.npy</td>
+<td>subject101</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/6ce5a49a6d8f4ed39c3aee9efbc8d95a_data.npy</td>
+<td>subject103</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/7bd65abc7cc049fba2ca024c8ecb7c6d_data.npy</td>
+<td>subject104</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/3c92d1e419264be69d6138101bb4214f_data.npy</td>
+<td>subject105</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/1472c7238f534ed9b623dba2b62480c9_data.npy</td>
+<td>subject106</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/a5737429ffc446d6bda3896fc0f9cf79_data.npy</td>
+<td>subject107</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/707e285388044b7d8f1515faf36ba155_data.npy</td>
+<td>subject108</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/2818b88b32ba49d08f91d63757327aa6_data.npy</td>
+<td>subject109</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/db27b573302d4c08b296102a31aa2583_data.npy</td>
+<td>subject110</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/df860ab217ac4138aee906c5cdafc641_data.npy</td>
+<td>subject111</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/16051f3153eb4542bf3e95b3e2c4a90b_data.npy</td>
+<td>subject112</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/13206312ea2f4a59a4374777ff15b0c9_data.npy</td>
+<td>subject113</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/094873df0aab4429ad2f1ad49898d6af_data.npy</td>
+<td>subject114</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/76b710665d0a4e6b97965c3e4171cc51_data.npy</td>
+<td>subject115</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/83414ef1123b4057ad3efd059b377467_data.npy</td>
+<td>subject117</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/b90b9197c0cc4793a426ce745920fdcd_data.npy</td>
+<td>subject118</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/11b64f2759dc47adb64cd20e20e9df92_data.npy</td>
+<td>subject120</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/be68f40f4c0a4459a3e49c5f41814ba6_data.npy</td>
+<td>subject122</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/f263bd36827c42a0b73a9ee487dc6dfd_data.npy</td>
+<td>subject123</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/0630444e4c4c4b11b0e19dbcbd07dfc3_data.npy</td>
+<td>subject124</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/0208628b52f34904967710f5b50f1e1c_data.npy</td>
+<td>subject125</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/b7f31c782205453d9b7a944e6c13ad50_data.npy</td>
+<td>subject126</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/ac1fe8612234416cb071685f4ceb4553_data.npy</td>
+<td>subject127</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/7f6fafd99b844a1a8936b49b06167395_data.npy</td>
+<td>subject128</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/6cded5dba2474ddb848403267c6fb98f_data.npy</td>
+<td>subject129</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/866d7392de8b45fd90a0a5937f6fc918_data.npy</td>
+<td>subject130</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/b27b731e4b2c47558397bec0a8a4a41f_data.npy</td>
+<td>subject132</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/a90d58a1f94f44688f5af2211056331f_data.npy</td>
+<td>subject133</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/3870c27331944e389f40e794b678c627_data.npy</td>
+<td>subject134</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/b8643f7fe5c94559ab2231f576ee3f07_data.npy</td>
+<td>subject135</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/b7f81927eea8480583daae1cbdb37676_data.npy</td>
+<td>subject136</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/ec1c26fe7cfb47d0bd7d8f1ee3235098_data.npy</td>
+<td>subject138</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/678b87ed7fdd4cf8a9afd0c016fc6405_data.npy</td>
+<td>subject139</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/82cacf04efb544d6bacca2f3c9366318_data.npy</td>
+<td>subject140</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/346602887cf144eba99ca9ffb12ba113_data.npy</td>
+<td>subject141</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/e338fbbb955743e892f235523e7e0858_data.npy</td>
+<td>subject142</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/1c0ad2c9a490426ca2c024815d765a31_data.npy</td>
+<td>subject143</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/6d6a1460a4144279a9d55519d556f040_data.npy</td>
+<td>subject144</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/1a293408241043319cb19b8301b876f1_data.npy</td>
+<td>subject145</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/87baf23b91dc4077bf055948cbf48d82_data.npy</td>
+<td>subject146</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/955c60b4d23240fa853528738babe409_data.npy</td>
+<td>subject148</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/fe18779775ec42aea28dd8d8a49e9171_data.npy</td>
+<td>subject149</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/01247632aab144149a3b3cdd330569f3_data.npy</td>
+<td>subject150</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/cbda1e656d9740e3b8afcfc12a5722e1_data.npy</td>
+<td>subject151</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/b2440bd2410d4a608d821e1e54463bc9_data.npy</td>
+<td>subject152</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/c87ae9b37feb4471bc81ab8e2a8840dd_data.npy</td>
+<td>subject153</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/7e09c33f9fac4323b186b110c7f936da_data.npy</td>
+<td>subject154</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/f9aadbe8ea224d6390dad5659b35161e_data.npy</td>
+<td>subject157</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/8b91251ef897490da86f499ae499608e_data.npy</td>
+<td>subject158</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/324e3413019c40d4ab7f7b7c756e5a4c_data.npy</td>
+<td>subject160</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/6d481ea743654b76afe09c66d6d12309_data.npy</td>
+<td>subject163</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/f7cd8b358fac413086ed8257aad37080_data.npy</td>
+<td>subject165</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/d98aa9b783b84229827e4ab45804197e_data.npy</td>
+<td>subject166</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/78c0d4916b494fcb8e62723c5a53e8fd_data.npy</td>
+<td>subject167</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/6a2f5e52c6914dd398207c1ea0ff11ed_data.npy</td>
+<td>subject168</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/818d553d28c94ee28c3b2520f2b90a55_data.npy</td>
+<td>subject169</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/6840815be86645d093b12044d35dd72e_data.npy</td>
+<td>subject170</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/4480665ece9b4f92bc96ab843db1adbb_data.npy</td>
+<td>subject171</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/e6a0e07d96b04695922936715a9ea103_data.npy</td>
+<td>subject172</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/162af04190a54196aa0979dd778e06cd_data.npy</td>
+<td>subject174</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/ccd345d01f6a42eca3aeeb516c1b7883_data.npy</td>
+<td>subject175</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/8ecb69046b35458ca4f29e015217fe3a_data.npy</td>
+<td>subject177</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/f427d6f76b0c4961bf47cf019f5dd4a5_data.npy</td>
+<td>subject178</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/6c80e929d165431cb1af81b1835d64a7_data.npy</td>
+<td>subject179</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/3a024400b2c6401196d82efc7013c195_data.npy</td>
+<td>subject180</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/331077e805054061a565cfadd7dcced6_data.npy</td>
+<td>subject181</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/ed2943a2645f4ad18ca1659787954d14_data.npy</td>
+<td>subject182</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/9855d1b2d42943679b5e07d2cac2ab5d_data.npy</td>
+<td>subject183</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/25f0d0d8957e4c54946cb37156c094d3_data.npy</td>
+<td>subject185</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/c6738c57b46145e8815a8ec3c2eb2cf4_data.npy</td>
+<td>subject187</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/9250395d5e62400c9d6093eff9faff8e_data.npy</td>
+<td>subject188</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/959461efe5154382af0ddc07f8f39165_data.npy</td>
+<td>subject190</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/c3fef28c47c64044abddff76d018eb88_data.npy</td>
+<td>subject191</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/b088f67fbb714fb8b23c27101c46b1b1_data.npy</td>
+<td>subject192</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/98d84e97137148c7b8f0d54025daeb74_data.npy</td>
+<td>subject195</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/8582bd1709324669949030972a6aabfe_data.npy</td>
+<td>subject198</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/8435fc414f924c16a7787c4fa67127fd_data.npy</td>
+<td>subject199</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/3f40bc5a3dc14b399e0454eec2b3549b_data.npy</td>
+<td>subject200</td>
+<td>False</td>
+</tr>
+</table>
+
+                </div>
+            </details>
+            <details>
+                <summary>Test metadata (<a href="../hpoptim_instr/split_1/datasets/test_metadata.csv">download link</a>)</summary>
+                <div class="table-container padded">
+                    <table>
+<thead>
+<tr>
+<td>filename</td>
+<td>subject_id</td>
+<td>signal_cancer</td>
+</tr>
+</thead>
+<tr>
+<td>repertoires/59a9aaaa956c4709be8ac72ea40e1603_data.npy</td>
+<td>subject2</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/6b268ffd36184418bbd8576ae8906125_data.npy</td>
+<td>subject5</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/76fa007e80494563bd5e1e26afdc25ac_data.npy</td>
+<td>subject12</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/6aec875e16ce43d3a908448d4d2f1f42_data.npy</td>
+<td>subject15</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/88ee0a67d331456cbf819a15ac307b37_data.npy</td>
+<td>subject19</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/2ba60a4d306947e8a0e4ce6895823c37_data.npy</td>
+<td>subject26</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/2eff579dad7e47928c932ec0387a84ff_data.npy</td>
+<td>subject31</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/7b4fd9eb8dfb4fecb0dd72a30497623a_data.npy</td>
+<td>subject41</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/f322f669ee92414fb407f063abd455a3_data.npy</td>
+<td>subject44</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/c77f001942744ad187265822a1efe933_data.npy</td>
+<td>subject46</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/760ac227358a48369a9e3e7f0cc56f00_data.npy</td>
+<td>subject48</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/7c826cbef1a143c6b20b2762da62520f_data.npy</td>
+<td>subject73</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/2209d8fb8793488e85938a8491ce4359_data.npy</td>
+<td>subject76</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/74baaa805a414696bad569508e64369e_data.npy</td>
+<td>subject79</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/a78bbd150a0c43afa41ff6a7ecf4e828_data.npy</td>
+<td>subject83</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/c09e733e05044ab6834ae6f8b772b508_data.npy</td>
+<td>subject90</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/f85f1e6b748e44bca28ea3758590a85f_data.npy</td>
+<td>subject95</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/52a54deb68c84d72928b0e8e5dca86ad_data.npy</td>
+<td>subject100</td>
+<td>True</td>
+</tr>
+<tr>
+<td>repertoires/396c50326d334f1db207c1e23fb0cbe9_data.npy</td>
+<td>subject102</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/1c0ee50446374e59a241030a68927d35_data.npy</td>
+<td>subject116</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/295891ac1df8471e86e0db7177858c4b_data.npy</td>
+<td>subject119</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/5fd3e4b331d04a7a8ae7d2546f3e9eaf_data.npy</td>
+<td>subject121</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/d59109e95d2e454cb07b82fd07500f8e_data.npy</td>
+<td>subject131</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/36f8871f5dcc42829700eb767d9afc24_data.npy</td>
+<td>subject137</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/a98da3de8ee04bbdb53db9b30288e76e_data.npy</td>
+<td>subject147</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/944abed2dc6f4157930c88c486174bac_data.npy</td>
+<td>subject155</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/701518251e05470d8b8b83735d2cfc28_data.npy</td>
+<td>subject156</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/0546f3ad06904c66b6bdf5301aba0e68_data.npy</td>
+<td>subject159</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/4dfe5d2b7d814244bbd6457525865a29_data.npy</td>
+<td>subject161</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/4aa5c420f46b4504ba19b40a3697cdb0_data.npy</td>
+<td>subject162</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/5174eb77552c40d6912f729e59055188_data.npy</td>
+<td>subject164</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/4447113509c74cff804dc99e52496792_data.npy</td>
+<td>subject173</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/3caaa23d1b4a4caba7e9dea94cf889cd_data.npy</td>
+<td>subject176</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/ee87b421c1574cf8a36249e773581b0d_data.npy</td>
+<td>subject184</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/34695c2ffcec4139bc437a413f9a5721_data.npy</td>
+<td>subject186</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/a71d583a541b41af8d47acec96ed6fce_data.npy</td>
+<td>subject189</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/8c5aa6d4b59f4c998ce177cf94970c14_data.npy</td>
+<td>subject193</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/fb2e24654598498594e01e4c6f2bbff1_data.npy</td>
+<td>subject194</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/b7165602d2aa45e789cd6e9ba6195cd4_data.npy</td>
+<td>subject196</td>
+<td>False</td>
+</tr>
+<tr>
+<td>repertoires/beee79c36ce649e998295cdd360d0df5_data.npy</td>
+<td>subject197</td>
+<td>False</td>
+</tr>
+</table>
+
+                </div>
+            </details>
+        </div>
+        <h4>Label signal_cancer</h4>
+        <p>
+            In the table below, the performance of each hyperparameter setting on the test set for this split is shown, as measured by the
+            optimization metric used for model selection and model assessment. All settings were refitted on
+            the dataset which includes all training and validation data for this split. The setting in bold was chosen as the optimal one for this
+            split during selection (inner cross-validation loop).
+        </p>
+        <div class="padded">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hyperparameter settings (preprocessing, encoding, ML method)</th>
+                            <th>Performance (accuracy)</th>
+                            <th>Reports</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <b>
+                                feature_size_4_logistic_regression
+                                </b>
+                            </td>
+                            <td>
+                                <b>0.65</b></td>
+                            <td><a href="hpoptim_instr_signal_cancer_feature_size_4_logistic_regression_assessment_reports_split_1.html">see reports</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <p>The performance of different hyperparameter settings on all listed metrics (both the optimization metric and other metrics not used for
+            model selection and assessment) is shown in the table below. This is the performance on the test set for this assessment split when all
+            models have been retrained on training and validation dataset (the same as the previous table).</p>
+        <div class="table-container padded">
+            <table>
+<thead>
+<tr>
+<td>Hyperparameter settings (preprocessing, encoding, ML method)</td>
+<td>balanced_accuracy</td>
+<td>recall</td>
+<td>auc</td>
+</tr>
+</thead>
+<tr>
+<td>feature_size_4_logistic_regression</td>
+<td>0.646</td>
+<td>0.611</td>
+<td>0.616</td>
+</tr>
+</table>
+
+        </div>
+        <p class="padded-bottom">
+            For the performance of each of the settings during the inner loop of cross-validation (used to select the optimal model for the split),
+            see <a href="hpoptim_instr_selection_details_signal_cancer_split_1.html">selection details</a>.
+        </p>
+    </div>
+</body>
+</html>

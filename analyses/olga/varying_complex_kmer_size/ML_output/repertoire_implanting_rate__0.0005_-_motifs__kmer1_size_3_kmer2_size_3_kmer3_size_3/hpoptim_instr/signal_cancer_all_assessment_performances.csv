@@ -1,0 +1,6 @@
+hp_setting,split,optimal,balanced_accuracy,auc,recall
+feature_size_4_logistic_regression,1,False,0.3645833333333333,0.3359375,0.1875
+feature_size_4_logistic_regression,2,False,0.4722222222222222,0.4671717171717172,0.5
+feature_size_4_logistic_regression,3,False,0.3583959899749373,0.2556390977443609,0.19047619047619047
+feature_size_4_logistic_regression,4,False,0.5,0.45454545454545464,0.0
+feature_size_4_logistic_regression,5,False,0.4949874686716792,0.443609022556391,0.8947368421052632

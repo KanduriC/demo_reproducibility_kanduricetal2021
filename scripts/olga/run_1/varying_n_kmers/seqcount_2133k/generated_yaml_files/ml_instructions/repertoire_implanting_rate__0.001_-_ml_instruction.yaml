@@ -1,0 +1,151 @@
+definitions:
+  datasets:
+    implanted_ostmeyer:
+      format: Pickle
+      params:
+        metadata_file: /wd/analyses/olga/varying_n_kmers/seqcount_2133k/simulated_data/repertoire_implanting_rate__0.001/sim_instruction/exported_dataset/pickle/n_kmers_metadata.csv
+        path: /wd/analyses/olga/varying_n_kmers/seqcount_2133k/simulated_data/repertoire_implanting_rate__0.001/sim_instruction/exported_dataset/pickle/n_kmers.iml_dataset
+  encodings:
+    feature_size_4:
+      KmerFrequency:
+        k: 4
+        scale_to_unit_variance: true
+        scale_to_zero_mean: true
+    my_mr_encoding:
+      MatchedRegex:
+        match_v_genes: false
+        motif_filepath: /wd/scripts/olga/run_1/motif_file_n_kmers_64.txt
+        sum_counts: true
+  ml_methods:
+    logistic_regression:
+      LogisticRegression:
+        C:
+        - 5
+        - 1
+        - 0.1
+        - 0.05
+        max_iter: 100
+        penalty: l1
+      model_selection_cv: true
+      model_selection_n_folds: 2
+  reports:
+    my_coef_report:
+      Coefficients:
+        coefs_to_plot:
+        - n_largest
+        n_largest:
+        - 15
+    my_hp_benchmark: MLSettingsPerformance
+    my_match_report: Matches
+    my_motif_report:
+      MotifSeedRecovery:
+        implanted_motifs_per_label:
+          signal_cancer:
+            gap_sizes:
+            - 0
+            hamming_distance: false
+            seeds:
+            - VHHS
+            - HPFK
+            - LRSQ
+            - TDTN
+            - EVCP
+            - ELNW
+            - ESPL
+            - EEYD
+            - YMAM
+            - QYGC
+            - GHPG
+            - HYRG
+            - SIGT
+            - VNKE
+            - HNER
+            - MFVR
+            - LPEG
+            - KNKN
+            - WLQA
+            - WKMG
+            - DSCE
+            - WKYQ
+            - PTPF
+            - CYHH
+            - NETD
+            - PDFT
+            - KREH
+            - TDEG
+            - ADKG
+            - IDPF
+            - TARI
+            - EDER
+            - PGGW
+            - CLGT
+            - WIFS
+            - DDMQ
+            - WGNM
+            - MHNR
+            - KKCD
+            - YMQE
+            - MAAL
+            - EQCN
+            - DWGY
+            - IECW
+            - YLSD
+            - YVLQ
+            - LGSR
+            - MGMH
+            - VSEY
+            - WYVS
+            - ATTV
+            - ETTW
+            - AARR
+            - IQTV
+            - YRKY
+            - SDID
+            - YQLY
+            - EWSH
+            - VCFA
+            - DFKR
+            - YFVP
+            - WCSD
+            - CPEA
+            - RVLF
+instructions:
+  hpoptim_instr:
+    assessment:
+      reports:
+        models:
+        - my_coef_report
+        - my_motif_report
+      split_count: 5
+      split_strategy: k_fold
+      training_percentage: 0.7
+    dataset: implanted_ostmeyer
+    labels:
+    - signal_cancer
+    metrics:
+    - auc
+    - recall
+    number_of_processes: 16
+    optimization_metric: accuracy
+    refit_optimal_model: false
+    reports:
+    - my_hp_benchmark
+    selection:
+      split_count: 1
+      split_strategy: random
+      training_percentage: 1.0
+    settings:
+    - encoding: feature_size_4
+      ml_method: logistic_regression
+    store_encoded_data: false
+    strategy: GridSearch
+    type: TrainMLModel
+  instruction_1:
+    analyses:
+      signal_freq:
+        dataset: implanted_ostmeyer
+        encoding: my_mr_encoding
+        labels:
+        - signal_cancer
+        report: my_match_report
+    type: ExploratoryAnalysis

@@ -1,0 +1,2 @@
+signal_cancer_accuracy,signal_cancer_auc,signal_cancer_balanced_accuracy,signal_cancer_recall,split_index
+0.55,0.5353535353535354,0.5707070707070707,0.7777777777777778,0

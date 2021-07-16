@@ -1,0 +1,98 @@
+definitions:
+  datasets:
+    rep_size:
+      format: OLGA
+      params:
+        metadata_file: /wd/data/olga/randomly_generated_repertoires/randomly_generated_repertoires_metadata.csv
+        path: /wd/data/olga/randomly_generated_repertoires/
+        result_path: /wd/analyses/olga/dataset_implanting_rate/immuneml_imported_files/
+  motifs:
+    kmer1_size_2:
+      instantiation: GappedKmer
+      seed: YR
+    kmer1_size_3:
+      instantiation: GappedKmer
+      seed: YRE
+    kmer1_size_4:
+      instantiation: GappedKmer
+      seed: YREV
+    kmer1_size_5:
+      instantiation: GappedKmer
+      seed: VERYW
+    kmer1_size_6:
+      instantiation: GappedKmer
+      seed: YREVWY
+    kmer1_size_7:
+      instantiation: GappedKmer
+      seed: YREVWYK
+    kmer1_size_8:
+      instantiation: GappedKmer
+      seed: YREVWYKR
+    kmer2_size_2:
+      instantiation: GappedKmer
+      seed: WK
+    kmer2_size_3:
+      instantiation: GappedKmer
+      seed: WKD
+    kmer2_size_4:
+      instantiation: GappedKmer
+      seed: WKDY
+    kmer2_size_5:
+      instantiation: GappedKmer
+      seed: YDKWV
+    kmer2_size_6:
+      instantiation: GappedKmer
+      seed: WKDYVW
+    kmer2_size_7:
+      instantiation: GappedKmer
+      seed: WKDYVWF
+    kmer2_size_8:
+      instantiation: GappedKmer
+      seed: WKDYVWFK
+    kmer3_size_2:
+      instantiation: GappedKmer
+      seed: ER
+    kmer3_size_3:
+      instantiation: GappedKmer
+      seed: ERF
+    kmer3_size_4:
+      instantiation: GappedKmer
+      seed: ERFY
+    kmer3_size_5:
+      instantiation: GappedKmer
+      seed: YFREW
+    kmer3_size_6:
+      instantiation: GappedKmer
+      seed: ERFYWV
+    kmer3_size_7:
+      instantiation: GappedKmer
+      seed: ERFYWVK
+    kmer3_size_8:
+      instantiation: GappedKmer
+      seed: ERFYWVKR
+  signals:
+    cancer:
+      implanting: HealthySequence
+      motifs:
+      - kmer1_size_4
+      - kmer2_size_4
+      - kmer3_size_4
+      sequence_position_weights:
+        108: 0.25
+        109: 0.25
+        110: 0.25
+        111: 0.25
+  simulations:
+    sim:
+      implanting1:
+        dataset_implanting_rate: 0.6
+        repertoire_implanting_rate: 2.0e-05
+        signals:
+        - cancer
+instructions:
+  sim_instruction:
+    dataset: rep_size
+    export_formats:
+    - Pickle
+    simulation: sim
+    type: Simulation

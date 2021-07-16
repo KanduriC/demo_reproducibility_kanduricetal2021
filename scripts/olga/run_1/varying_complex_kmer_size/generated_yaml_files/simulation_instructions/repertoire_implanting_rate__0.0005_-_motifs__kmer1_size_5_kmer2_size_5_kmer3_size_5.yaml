@@ -1,0 +1,89 @@
+definitions:
+  datasets:
+    complex_kmer_size:
+      format: OLGA
+      params:
+        metadata_file: /wd/data/olga/randomly_generated_repertoires/randomly_generated_repertoires_metadata.csv
+        path: /wd/data/olga/randomly_generated_repertoires/
+        result_path: /wd/analyses/olga/varying_complex_kmer_size/immuneml_imported_files/
+  motifs:
+    kmer1_size_3:
+      instantiation:
+        GappedKmer:
+          max_gap: 1
+          min_gap: 1
+      seed: Y/E
+    kmer1_size_4:
+      instantiation:
+        GappedKmer:
+          max_gap: 1
+          min_gap: 1
+      seed: Y/EV
+    kmer1_size_5:
+      instantiation:
+        GappedKmer:
+          max_gap: 1
+          min_gap: 1
+      seed: V/RYW
+    kmer2_size_3:
+      instantiation:
+        GappedKmer:
+          max_gap: 1
+          min_gap: 1
+      seed: W/D
+    kmer2_size_4:
+      instantiation:
+        GappedKmer:
+          max_gap: 1
+          min_gap: 1
+      seed: WK/Y
+    kmer2_size_5:
+      instantiation:
+        GappedKmer:
+          max_gap: 1
+          min_gap: 1
+      seed: YD/WV
+    kmer3_size_3:
+      instantiation:
+        GappedKmer:
+          max_gap: 1
+          min_gap: 1
+      seed: E/F
+    kmer3_size_4:
+      instantiation:
+        GappedKmer:
+          max_gap: 1
+          min_gap: 1
+      seed: E/FY
+    kmer3_size_5:
+      instantiation:
+        GappedKmer:
+          max_gap: 1
+          min_gap: 1
+      seed: YFR/W
+  signals:
+    cancer:
+      implanting: HealthySequence
+      motifs:
+      - kmer1_size_5
+      - kmer2_size_5
+      - kmer3_size_5
+      sequence_position_weights:
+        108: 0.25
+        109: 0.25
+        110: 0.25
+        111: 0.25
+  simulations:
+    sim:
+      implanting1:
+        dataset_implanting_rate: 0.5
+        repertoire_implanting_rate: 0.0005
+        signals:
+        - cancer
+instructions:
+  sim_instruction:
+    dataset: complex_kmer_size
+    export_formats:
+    - Pickle
+    simulation: sim
+    type: Simulation

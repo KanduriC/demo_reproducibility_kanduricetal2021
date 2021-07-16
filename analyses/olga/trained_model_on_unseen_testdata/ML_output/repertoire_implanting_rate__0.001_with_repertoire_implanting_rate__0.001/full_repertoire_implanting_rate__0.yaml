@@ -1,0 +1,25 @@
+definitions:
+  datasets:
+    implanted_ostmeyer:
+      format: Pickle
+      params:
+        metadata_file: /wd/analyses/olga/varying_sample_size/sample_size_100/simulated_data/repertoire_implanting_rate__0.002/sim_instruction/exported_dataset/pickle/rep_size_metadata.csv
+        path: /wd/analyses/olga/varying_sample_size/sample_size_100/simulated_data/repertoire_implanting_rate__0.002/sim_instruction/exported_dataset/pickle/rep_size.iml_dataset
+        result_path: wd/analyses/olga/trained_model_on_unseen_testdata/ML_output/repertoire_implanting_rate__0.001_with_repertoire_implanting_rate__0.001/datasets/implanted_ostmeyer/
+  encodings: {}
+  ml_methods: {}
+  motifs: {}
+  preprocessing_sequences: {}
+  reports: {}
+  signals: {}
+  simulations: {}
+instructions:
+  ml_application:
+    config_path: /wd/analyses/olga/varying_rep_size/seqcount_100000/ML_output/repertoire_implanting_rate__0.002/hpoptim_instr/optimal_signal_cancer/zip/ml_model_signal_cancer.zip
+    dataset: implanted_ostmeyer
+    label: signal_cancer
+    pool_size: 10
+    store_encoded_data: false
+    type: MLApplication
+output:
+  format: HTML

@@ -1,0 +1,5 @@
+id	TRB_regex
+1	YRE
+2	WKD
+3	ERF
+

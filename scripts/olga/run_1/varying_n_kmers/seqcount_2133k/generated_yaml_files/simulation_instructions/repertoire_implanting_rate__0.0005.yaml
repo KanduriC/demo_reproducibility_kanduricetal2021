@@ -1,0 +1,288 @@
+definitions:
+  datasets:
+    n_kmers:
+      format: OLGA
+      params:
+        metadata_file: /wd/data/olga/randomly_generated_repertoires/randomly_generated_repertoires_metadata.csv
+        path: /wd/data/olga/randomly_generated_repertoires/
+        result_path: /wd/analyses/olga/varying_n_kmers/seqcount_2133k/immuneml_imported_files/
+  motifs:
+    kmer_n_10_size_4:
+      instantiation: GappedKmer
+      seed: VHHS
+    kmer_n_11_size_4:
+      instantiation: GappedKmer
+      seed: HPFK
+    kmer_n_12_size_4:
+      instantiation: GappedKmer
+      seed: LRSQ
+    kmer_n_13_size_4:
+      instantiation: GappedKmer
+      seed: TDTN
+    kmer_n_14_size_4:
+      instantiation: GappedKmer
+      seed: EVCP
+    kmer_n_15_size_4:
+      instantiation: GappedKmer
+      seed: ELNW
+    kmer_n_16_size_4:
+      instantiation: GappedKmer
+      seed: ESPL
+    kmer_n_17_size_4:
+      instantiation: GappedKmer
+      seed: EEYD
+    kmer_n_18_size_4:
+      instantiation: GappedKmer
+      seed: YMAM
+    kmer_n_19_size_4:
+      instantiation: GappedKmer
+      seed: QYGC
+    kmer_n_1_size_4:
+      instantiation: GappedKmer
+      seed: GHPG
+    kmer_n_20_size_4:
+      instantiation: GappedKmer
+      seed: HYRG
+    kmer_n_21_size_4:
+      instantiation: GappedKmer
+      seed: SIGT
+    kmer_n_22_size_4:
+      instantiation: GappedKmer
+      seed: VNKE
+    kmer_n_23_size_4:
+      instantiation: GappedKmer
+      seed: HNER
+    kmer_n_24_size_4:
+      instantiation: GappedKmer
+      seed: MFVR
+    kmer_n_25_size_4:
+      instantiation: GappedKmer
+      seed: LPEG
+    kmer_n_26_size_4:
+      instantiation: GappedKmer
+      seed: KNKN
+    kmer_n_27_size_4:
+      instantiation: GappedKmer
+      seed: WLQA
+    kmer_n_28_size_4:
+      instantiation: GappedKmer
+      seed: WKMG
+    kmer_n_29_size_4:
+      instantiation: GappedKmer
+      seed: DSCE
+    kmer_n_2_size_4:
+      instantiation: GappedKmer
+      seed: WKYQ
+    kmer_n_30_size_4:
+      instantiation: GappedKmer
+      seed: PTPF
+    kmer_n_31_size_4:
+      instantiation: GappedKmer
+      seed: CYHH
+    kmer_n_32_size_4:
+      instantiation: GappedKmer
+      seed: NETD
+    kmer_n_33_size_4:
+      instantiation: GappedKmer
+      seed: PDFT
+    kmer_n_34_size_4:
+      instantiation: GappedKmer
+      seed: KREH
+    kmer_n_35_size_4:
+      instantiation: GappedKmer
+      seed: TDEG
+    kmer_n_36_size_4:
+      instantiation: GappedKmer
+      seed: ADKG
+    kmer_n_37_size_4:
+      instantiation: GappedKmer
+      seed: IDPF
+    kmer_n_38_size_4:
+      instantiation: GappedKmer
+      seed: TARI
+    kmer_n_39_size_4:
+      instantiation: GappedKmer
+      seed: EDER
+    kmer_n_3_size_4:
+      instantiation: GappedKmer
+      seed: PGGW
+    kmer_n_40_size_4:
+      instantiation: GappedKmer
+      seed: CLGT
+    kmer_n_41_size_4:
+      instantiation: GappedKmer
+      seed: WIFS
+    kmer_n_42_size_4:
+      instantiation: GappedKmer
+      seed: DDMQ
+    kmer_n_43_size_4:
+      instantiation: GappedKmer
+      seed: WGNM
+    kmer_n_44_size_4:
+      instantiation: GappedKmer
+      seed: MHNR
+    kmer_n_45_size_4:
+      instantiation: GappedKmer
+      seed: KKCD
+    kmer_n_46_size_4:
+      instantiation: GappedKmer
+      seed: YMQE
+    kmer_n_47_size_4:
+      instantiation: GappedKmer
+      seed: MAAL
+    kmer_n_48_size_4:
+      instantiation: GappedKmer
+      seed: EQCN
+    kmer_n_49_size_4:
+      instantiation: GappedKmer
+      seed: DWGY
+    kmer_n_4_size_4:
+      instantiation: GappedKmer
+      seed: IECW
+    kmer_n_50_size_4:
+      instantiation: GappedKmer
+      seed: YLSD
+    kmer_n_51_size_4:
+      instantiation: GappedKmer
+      seed: YVLQ
+    kmer_n_52_size_4:
+      instantiation: GappedKmer
+      seed: LGSR
+    kmer_n_53_size_4:
+      instantiation: GappedKmer
+      seed: MGMH
+    kmer_n_54_size_4:
+      instantiation: GappedKmer
+      seed: VSEY
+    kmer_n_55_size_4:
+      instantiation: GappedKmer
+      seed: WYVS
+    kmer_n_56_size_4:
+      instantiation: GappedKmer
+      seed: ATTV
+    kmer_n_57_size_4:
+      instantiation: GappedKmer
+      seed: ETTW
+    kmer_n_58_size_4:
+      instantiation: GappedKmer
+      seed: AARR
+    kmer_n_59_size_4:
+      instantiation: GappedKmer
+      seed: IQTV
+    kmer_n_5_size_4:
+      instantiation: GappedKmer
+      seed: YRKY
+    kmer_n_60_size_4:
+      instantiation: GappedKmer
+      seed: SDID
+    kmer_n_61_size_4:
+      instantiation: GappedKmer
+      seed: YQLY
+    kmer_n_62_size_4:
+      instantiation: GappedKmer
+      seed: EWSH
+    kmer_n_63_size_4:
+      instantiation: GappedKmer
+      seed: VCFA
+    kmer_n_64_size_4:
+      instantiation: GappedKmer
+      seed: DFKR
+    kmer_n_6_size_4:
+      instantiation: GappedKmer
+      seed: YFVP
+    kmer_n_7_size_4:
+      instantiation: GappedKmer
+      seed: WCSD
+    kmer_n_8_size_4:
+      instantiation: GappedKmer
+      seed: CPEA
+    kmer_n_9_size_4:
+      instantiation: GappedKmer
+      seed: RVLF
+  signals:
+    cancer:
+      implanting: HealthySequence
+      motifs:
+      - kmer_n_47_size_4
+      - kmer_n_28_size_4
+      - kmer_n_5_size_4
+      - kmer_n_24_size_4
+      - kmer_n_9_size_4
+      - kmer_n_58_size_4
+      - kmer_n_29_size_4
+      - kmer_n_31_size_4
+      - kmer_n_16_size_4
+      - kmer_n_13_size_4
+      - kmer_n_55_size_4
+      - kmer_n_36_size_4
+      - kmer_n_61_size_4
+      - kmer_n_62_size_4
+      - kmer_n_23_size_4
+      - kmer_n_50_size_4
+      - kmer_n_34_size_4
+      - kmer_n_38_size_4
+      - kmer_n_11_size_4
+      - kmer_n_12_size_4
+      - kmer_n_51_size_4
+      - kmer_n_59_size_4
+      - kmer_n_15_size_4
+      - kmer_n_3_size_4
+      - kmer_n_46_size_4
+      - kmer_n_17_size_4
+      - kmer_n_40_size_4
+      - kmer_n_33_size_4
+      - kmer_n_32_size_4
+      - kmer_n_19_size_4
+      - kmer_n_44_size_4
+      - kmer_n_43_size_4
+      - kmer_n_48_size_4
+      - kmer_n_45_size_4
+      - kmer_n_2_size_4
+      - kmer_n_4_size_4
+      - kmer_n_14_size_4
+      - kmer_n_57_size_4
+      - kmer_n_63_size_4
+      - kmer_n_52_size_4
+      - kmer_n_18_size_4
+      - kmer_n_53_size_4
+      - kmer_n_56_size_4
+      - kmer_n_22_size_4
+      - kmer_n_49_size_4
+      - kmer_n_30_size_4
+      - kmer_n_25_size_4
+      - kmer_n_26_size_4
+      - kmer_n_7_size_4
+      - kmer_n_60_size_4
+      - kmer_n_42_size_4
+      - kmer_n_27_size_4
+      - kmer_n_20_size_4
+      - kmer_n_8_size_4
+      - kmer_n_39_size_4
+      - kmer_n_6_size_4
+      - kmer_n_10_size_4
+      - kmer_n_54_size_4
+      - kmer_n_37_size_4
+      - kmer_n_1_size_4
+      - kmer_n_41_size_4
+      - kmer_n_35_size_4
+      - kmer_n_64_size_4
+      - kmer_n_21_size_4
+      sequence_position_weights:
+        108: 0.25
+        109: 0.25
+        110: 0.25
+        111: 0.25
+  simulations:
+    sim:
+      implanting1:
+        dataset_implanting_rate: 0.5
+        repertoire_implanting_rate: 0.0005
+        signals:
+        - cancer
+instructions:
+  sim_instruction:
+    dataset: n_kmers
+    export_formats:
+    - Pickle
+    simulation: sim
+    type: Simulation

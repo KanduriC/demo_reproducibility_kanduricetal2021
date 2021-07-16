@@ -1,0 +1,7 @@
+id	TRB_regex
+1	SFWY
+2	YIGP
+3	EDFN
+4	WTHS
+
+

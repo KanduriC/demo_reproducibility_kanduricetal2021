@@ -1,0 +1,9 @@
+id	TRB_regex
+1	DMPW
+2	EGNN
+3	ENVY
+4	DIQF
+5	LQYF
+6	YADR
+7	EWTP
+8	ACPF

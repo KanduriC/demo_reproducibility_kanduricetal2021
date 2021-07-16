@@ -1,0 +1,96 @@
+definitions:
+  datasets:
+    n_kmers:
+      format: OLGA
+      params:
+        metadata_file: /wd/data/olga/randomly_generated_repertoires/randomly_generated_repertoires_metadata.csv
+        path: /wd/data/olga/randomly_generated_repertoires/
+        result_path: /wd/analyses/olga/varying_n_kmers/seqcount_533k/immuneml_imported_files/
+  motifs:
+    kmer_n_10_size_4:
+      instantiation: GappedKmer
+      seed: EYQF
+    kmer_n_11_size_4:
+      instantiation: GappedKmer
+      seed: NLDS
+    kmer_n_12_size_4:
+      instantiation: GappedKmer
+      seed: RLLW
+    kmer_n_13_size_4:
+      instantiation: GappedKmer
+      seed: KNGQ
+    kmer_n_14_size_4:
+      instantiation: GappedKmer
+      seed: KMLR
+    kmer_n_15_size_4:
+      instantiation: GappedKmer
+      seed: PARV
+    kmer_n_16_size_4:
+      instantiation: GappedKmer
+      seed: FRIA
+    kmer_n_1_size_4:
+      instantiation: GappedKmer
+      seed: RHQK
+    kmer_n_2_size_4:
+      instantiation: GappedKmer
+      seed: HKCR
+    kmer_n_3_size_4:
+      instantiation: GappedKmer
+      seed: RHVD
+    kmer_n_4_size_4:
+      instantiation: GappedKmer
+      seed: QHPM
+    kmer_n_5_size_4:
+      instantiation: GappedKmer
+      seed: WPEL
+    kmer_n_6_size_4:
+      instantiation: GappedKmer
+      seed: YHCI
+    kmer_n_7_size_4:
+      instantiation: GappedKmer
+      seed: FKQK
+    kmer_n_8_size_4:
+      instantiation: GappedKmer
+      seed: WARS
+    kmer_n_9_size_4:
+      instantiation: GappedKmer
+      seed: RLDD
+  signals:
+    cancer:
+      implanting: HealthySequence
+      motifs:
+      - kmer_n_5_size_4
+      - kmer_n_6_size_4
+      - kmer_n_4_size_4
+      - kmer_n_13_size_4
+      - kmer_n_14_size_4
+      - kmer_n_9_size_4
+      - kmer_n_7_size_4
+      - kmer_n_8_size_4
+      - kmer_n_10_size_4
+      - kmer_n_15_size_4
+      - kmer_n_11_size_4
+      - kmer_n_3_size_4
+      - kmer_n_1_size_4
+      - kmer_n_12_size_4
+      - kmer_n_16_size_4
+      - kmer_n_2_size_4
+      sequence_position_weights:
+        108: 0.25
+        109: 0.25
+        110: 0.25
+        111: 0.25
+  simulations:
+    sim:
+      implanting1:
+        dataset_implanting_rate: 0.5
+        repertoire_implanting_rate: 0.0001
+        signals:
+        - cancer
+instructions:
+  sim_instruction:
+    dataset: n_kmers
+    export_formats:
+    - Pickle
+    simulation: sim
+    type: Simulation

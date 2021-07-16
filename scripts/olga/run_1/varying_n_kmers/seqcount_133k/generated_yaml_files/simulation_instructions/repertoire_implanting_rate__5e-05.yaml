@@ -1,0 +1,48 @@
+definitions:
+  datasets:
+    n_kmers:
+      format: OLGA
+      params:
+        metadata_file: /wd/data/olga/randomly_generated_repertoires/randomly_generated_repertoires_metadata.csv
+        path: /wd/data/olga/randomly_generated_repertoires/
+        result_path: /wd/analyses/olga/varying_n_kmers/seqcount_133k/immuneml_imported_files/
+  motifs:
+    kmer_n_1_size_4:
+      instantiation: GappedKmer
+      seed: SFWY
+    kmer_n_2_size_4:
+      instantiation: GappedKmer
+      seed: YIGP
+    kmer_n_3_size_4:
+      instantiation: GappedKmer
+      seed: EDFN
+    kmer_n_4_size_4:
+      instantiation: GappedKmer
+      seed: WTHS
+  signals:
+    cancer:
+      implanting: HealthySequence
+      motifs:
+      - kmer_n_3_size_4
+      - kmer_n_4_size_4
+      - kmer_n_1_size_4
+      - kmer_n_2_size_4
+      sequence_position_weights:
+        108: 0.25
+        109: 0.25
+        110: 0.25
+        111: 0.25
+  simulations:
+    sim:
+      implanting1:
+        dataset_implanting_rate: 0.5
+        repertoire_implanting_rate: 5.0e-05
+        signals:
+        - cancer
+instructions:
+  sim_instruction:
+    dataset: n_kmers
+    export_formats:
+    - Pickle
+    simulation: sim
+    type: Simulation

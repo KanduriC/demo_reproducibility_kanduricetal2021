@@ -1,0 +1,6 @@
+hp_setting,split,balanced_accuracy,accuracy
+feature_size_4_logistic_regression,1,0.5,0.8
+feature_size_4_logistic_regression,2,0.42838874680306904,0.475
+feature_size_4_logistic_regression,3,0.5,0.575
+feature_size_4_logistic_regression,4,0.5,0.475
+feature_size_4_logistic_regression,5,0.3695652173913043,0.425
